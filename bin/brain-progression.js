@@ -2,61 +2,47 @@
 console.log("Welcome to the Brain Games!");
 import readlineSync from "readline-sync";
 
-function isEven(number) {
-  return number % 2 === 0;
-}
-
-let number1;
-let number2;
-let expression;
-let greatestCommonDivisor;
-let isAnswerCorrect = true;
-
-const checkAnswer = (answer) => {
-  if (parseInt(answer) === greatestCommonDivisor) {
-    console.log("Correct!");
-  } else {
-    console.log(
-      `'${answer}' is wrong answer ;(. Correct answer was '${greatestCommonDivisor}'`
-    );
-    isAnswerCorrect = false;
-  }
-};
-
-const findGreatestCommonDivisor = (num1, num2) => {
-  let divisor = 1;
-  let smallerNum = Math.min(num1, num2);
-
-  for (let i = 1; i <= smallerNum; i++) {
-    if (num1 % i === 0 && num2 % i === 0) {
-      divisor = i;
+const generateProgression = () => {
+  const length = Math.floor(Math.random() * 6) + 5;
+  const start = Math.floor(Math.random() * 100);
+  const difference = Math.floor(Math.random() * 10) + 1;
+  
+  const progression = [];
+  let hiddenIndex = Math.floor(Math.random() * length);
+  
+  for(let i = 0; i < length; i++) {
+    if(i === hiddenIndex) {
+      progression.push('..');
+    } else {
+      progression.push(start + (difference * i));
     }
   }
-
-  return divisor;
+  
+  return {
+    progression,
+    hiddenNumber: start + (difference * hiddenIndex)
+  };
 };
 
-const defineExpression = () => {
-  number1 = Math.floor(Math.random() * 100);
-  number2 = Math.floor(Math.random() * 100);
-  expression = `${number1} ${number2}`;
-  greatestCommonDivisor = findGreatestCommonDivisor(number1, number2);
-};
-
-let userName = readlineSync.question("May I have your name? ");
-
-console.log("Hi " + userName + "!");
-
-console.log("Find the greatest common divisor of given numbers.");
-
-for (let i = 0; i < 3; i++) {
-  if (!isAnswerCorrect) break;
-  defineExpression();
-  let answer = readlineSync.question(`Question: ${expression} `);
-  console.log(`Your answer: ${answer}`);
-  checkAnswer(answer);
-}
-
-if (isAnswerCorrect) {
+const playProgressionGame = () => {
+  const userName = readlineSync.question("May I have your name? ");
+  console.log(`Hello, ${userName}!`);
+  console.log("What number is missing in the progression?");
+    
+  for(let i = 0; i < 3; i++) {
+    const { progression, hiddenNumber } = generateProgression();
+    const userAnswer = readlineSync.question(`Question: ${progression.join(' ')} `);
+    
+    if(Number(userAnswer) === hiddenNumber) {
+      console.log("Correct!");
+    } else {
+      console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${hiddenNumber}'.`);
+      console.log(`Let's try again, ${userName}!`);
+      return;
+    }
+  }
+  
   console.log(`Congratulations, ${userName}!`);
-}
+};
+
+playProgressionGame();
