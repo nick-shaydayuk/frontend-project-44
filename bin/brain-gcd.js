@@ -2,10 +2,6 @@
 console.log("Welcome to the Brain Games!");
 import readlineSync from "readline-sync";
 
-function isEven(number) {
-  return number % 2 === 0;
-}
-
 let number1;
 let number2;
 let expression;
