@@ -8,13 +8,14 @@ let expression;
 let greatestCommonDivisor;
 let isAnswerCorrect = true;
 
-const checkAnswer = (answer) => {
+const checkAnswer = (answer, userName) => {
   if (parseInt(answer) === greatestCommonDivisor) {
     console.log("Correct!");
   } else {
     console.log(
       `'${answer}' is wrong answer ;(. Correct answer was '${greatestCommonDivisor}'`
     );
+    console.log(`Let's try again, ${userName}!`);
     isAnswerCorrect = false;
   }
 };
@@ -50,7 +51,7 @@ for (let i = 0; i < 3; i++) {
   defineExpression();
   let answer = readlineSync.question(`Question: ${expression} `);
   console.log(`Your answer: ${answer}`);
-  checkAnswer(answer);
+  checkAnswer(answer, userName);
 }
 
 if (isAnswerCorrect) {
