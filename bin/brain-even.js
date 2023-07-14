@@ -5,7 +5,7 @@ const playEvenGame = () => {
   console.log("Welcome to the Brain Games!");
   const name = readlineSync.question("May I have your name? ");
   console.log(`Hello, ${name}!`);
-  console.log("Answer 'yes' if the number is even, otherwise answer 'no'.");
+  console.log(`Answer "yes" if the number is even, otherwise answer "no".`);
 
   let correctAnswers = 0;
 
@@ -21,7 +21,7 @@ const playEvenGame = () => {
       correctAnswers++;
     } else {
       console.log(
-        `'${userAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`
+        `"${userAnswer}" is wrong answer ;(. Correct answer was "${correctAnswer}".`
       );
       console.log(`Let's try again, ${name}!`);
       return;
