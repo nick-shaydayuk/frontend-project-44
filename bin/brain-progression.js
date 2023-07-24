@@ -10,7 +10,7 @@ const generateProgression = () => {
   const progression = [];
   let hiddenIndex = Math.floor(Math.random() * length);
 
-  for (let i = 0; i < length; i++) {
+  for (let i = 0; i < length; i + 1) {
     if (i === hiddenIndex) {
       progression.push("..");
     } else {
@@ -29,7 +29,7 @@ const playProgressionGame = () => {
   console.log(`Hello, ${userName}!`);
   console.log("What number is missing in the progression?");
 
-  for (let i = 0; i < 3; i++) {
+  for (let i = 0; i < 3; i + 1) {
     const { progression, hiddenNumber } = generateProgression();
     const userAnswer = readlineSync.question(
       `Question: ${progression.join(" ")} `

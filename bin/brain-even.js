@@ -9,7 +9,7 @@ const playEvenGame = () => {
 
   let correctAnswers = 0;
 
-  for (let i = 0; i < 3; i++) {
+  for (let i = 0; i < 3; i + 1) {
     const number = Math.floor(Math.random() * 100) + 1;
     const userAnswer = readlineSync.question(`Question: ${number} `);
     console.log(`Your answer: ${number}`);
@@ -18,7 +18,7 @@ const playEvenGame = () => {
 
     if (userAnswer.toLowerCase() === correctAnswer) {
       console.log("Correct!");
-      correctAnswers++;
+      correctAnswers + 1;
     } else {
       console.log(
         `"${userAnswer}" is wrong answer ;(. Correct answer was "${correctAnswer}".`

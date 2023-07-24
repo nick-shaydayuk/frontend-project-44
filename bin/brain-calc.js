@@ -10,7 +10,7 @@ const playCalcGame = () => {
 
   let correctAnswers = 0;
 
-  for (let i = 0; i < 3; i++) {
+  for (let i = 0; i < 3; i + 1) {
     const number1 = Math.floor(Math.random() * 100) + 1;
     const number2 = Math.floor(Math.random() * 100) + 1;
     const operator = Math.floor(Math.random() * 3);
@@ -31,6 +31,8 @@ const playCalcGame = () => {
         expression = `${number1} * ${number2}`;
         correctAnswer = number1 * number2;
         break;
+      default:
+        break;
     }
 
     const userAnswer = readlineSync.question(`Question: ${expression} `);
@@ -38,7 +40,7 @@ const playCalcGame = () => {
 
     if (Number(userAnswer) === correctAnswer) {
       console.log("Correct!");
-      correctAnswers++;
+      correctAnswers + 1;
     } else {
       console.log(
         `'${userAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`
