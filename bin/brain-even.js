@@ -10,7 +10,7 @@ const playEvenGame = () => {
   let correctAnswers = 0;
 
   for (let i = 0; i < 3; i++) {
-    const number = Math.floor(Math.random() * 100) + 1;    
+    const number = Math.floor(Math.random() * 100) + 1;
     const userAnswer = readlineSync.question(`Question: ${number} `);
     console.log(`Your answer: ${number}`);
     const isEven = number % 2 === 0;
