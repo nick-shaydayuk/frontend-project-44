@@ -30,7 +30,7 @@ const playProgressionGame = () => {
   console.log(`Hello, ${userName}!`);
   console.log('What number is missing in the progression?');
 
-  for (let i = 0; i < 3; i + 1) {
+  for (let i = 0; i < 3; i += 1) {
     const { progression, hiddenNumber } = generateProgression();
     const userAnswer = readlineSync.question(
       `Question: ${progression.join(' ')} `
