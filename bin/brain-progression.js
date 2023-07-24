@@ -1,6 +1,7 @@
 #!/usr/bin/env node
-console.log("Welcome to the Brain Games!");
-import readlineSync from "readline-sync";
+import readlineSync from 'readline-sync';
+
+console.log('Welcome to the Brain Games!');
 
 const generateProgression = () => {
   const length = Math.floor(Math.random() * 6) + 5;
@@ -8,11 +9,11 @@ const generateProgression = () => {
   const difference = Math.floor(Math.random() * 10) + 1;
 
   const progression = [];
-  let hiddenIndex = Math.floor(Math.random() * length);
+  const hiddenIndex = Math.floor(Math.random() * length);
 
   for (let i = 0; i < length; i + 1) {
     if (i === hiddenIndex) {
-      progression.push("..");
+      progression.push('..');
     } else {
       progression.push(start + difference * i);
     }
@@ -25,18 +26,18 @@ const generateProgression = () => {
 };
 
 const playProgressionGame = () => {
-  const userName = readlineSync.question("May I have your name? ");
+  const userName = readlineSync.question('May I have your name? ');
   console.log(`Hello, ${userName}!`);
-  console.log("What number is missing in the progression?");
+  console.log('What number is missing in the progression?');
 
   for (let i = 0; i < 3; i + 1) {
     const { progression, hiddenNumber } = generateProgression();
     const userAnswer = readlineSync.question(
-      `Question: ${progression.join(" ")} `
+      `Question: ${progression.join(' ')} `
     );
 
     if (Number(userAnswer) === hiddenNumber) {
-      console.log("Correct!");
+      console.log('Correct!');
     } else {
       console.log(
         `'${userAnswer}' is wrong answer ;(. Correct answer was '${hiddenNumber}'.`

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
-import readlineSync from "readline-sync";
+import readlineSync from 'readline-sync';
 
-console.log("Welcome to the Brain Games!");
+console.log('Welcome to the Brain Games!');
 
 const isPrime = (num) => {
   if (num <= 1) {
@@ -18,7 +18,7 @@ const isPrime = (num) => {
 };
 
 const playPrimeGame = () => {
-  const userName = readlineSync.question("May I have your name? ");
+  const userName = readlineSync.question('May I have your name? ');
   console.log(`Hello, ${userName}!`);
   console.log(`Answer "yes" if given number is prime. Otherwise answer "no".`);
 
@@ -26,10 +26,10 @@ const playPrimeGame = () => {
     const number = Math.floor(Math.random() * 100) + 1;
     const userAnswer = readlineSync.question(`Question: ${number} `);
 
-    const correctAnswer = isPrime(number) ? "yes" : "no";
+    const correctAnswer = isPrime(number) ? 'yes' : 'no';
 
     if (userAnswer.toLowerCase() === correctAnswer) {
-      console.log("Correct!");
+      console.log('Correct!');
     } else {
       console.log(
         `'${userAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`

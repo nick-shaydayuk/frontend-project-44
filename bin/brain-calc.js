@@ -1,14 +1,12 @@
 #!/usr/bin/env node
 
-import readlineSync from "readline-sync";
+import readlineSync from 'readline-sync';
 
 const playCalcGame = () => {
-  console.log("Welcome to the Brain Games!");
-  const name = readlineSync.question("May I have your name? ");
+  console.log('Welcome to the Brain Games!');
+  const name = readlineSync.question('May I have your name? ');
   console.log(`Hello, ${name}!`);
-  console.log("What is the result of the expression?");
-
-  let correctAnswers = 0;
+  console.log('What is the result of the expression?');
 
   for (let i = 0; i < 3; i + 1) {
     const number1 = Math.floor(Math.random() * 100) + 1;
@@ -39,8 +37,7 @@ const playCalcGame = () => {
     console.log(`Your answer: ${userAnswer}`);
 
     if (Number(userAnswer) === correctAnswer) {
-      console.log("Correct!");
-      correctAnswers + 1;
+      console.log('Correct!');
     } else {
       console.log(
         `'${userAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`
