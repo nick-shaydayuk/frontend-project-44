@@ -10,12 +10,10 @@ let greatestCommonDivisor;
 let isAnswerCorrect = true;
 
 const checkAnswer = (answer, userName) => {
-  if (parseInt(answer) === greatestCommonDivisor) {
+  if (parseInt(answer, 10) === greatestCommonDivisor) {
     console.log('Correct!');
   } else {
-    console.log(
-      `'${answer}' is wrong answer ;(. Correct answer was '${greatestCommonDivisor}'`
-    );
+    console.log(`'${answer}' is wrong answer ;(. Correct answer was '${greatestCommonDivisor}'`);
     console.log(`Let's try again, ${userName}!`);
     isAnswerCorrect = false;
   }
@@ -43,7 +41,7 @@ const defineExpression = () => {
 
 const userName = readlineSync.question('May I have your name? ');
 
-console.log('Hello, ' + userName);
+console.log(`Hello, ${userName}`);
 
 console.log('Find the greatest common divisor of given numbers.');
 

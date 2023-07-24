@@ -32,16 +32,12 @@ const playProgressionGame = () => {
 
   for (let i = 0; i < 3; i += 1) {
     const { progression, hiddenNumber } = generateProgression();
-    const userAnswer = readlineSync.question(
-      `Question: ${progression.join(' ')} `
-    );
+    const userAnswer = readlineSync.question(`Question: ${progression.join(' ')} `);
 
     if (Number(userAnswer) === hiddenNumber) {
       console.log('Correct!');
     } else {
-      console.log(
-        `'${userAnswer}' is wrong answer ;(. Correct answer was '${hiddenNumber}'.`
-      );
+      console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${hiddenNumber}'.`);
       console.log(`Let's try again, ${userName}!`);
       return;
     }
