@@ -25,7 +25,7 @@ const findGreatestCommonDivisor = (num1, num2) => {
   let divisor = 1;
   const smallerNum = Math.min(num1, num2);
 
-  for (let i = 1; i <= smallerNum; i + 1) {
+  for (let i = 1; i <= smallerNum; i += 1) {
     if (num1 % i === 0 && num2 % i === 0) {
       divisor = i;
     }
