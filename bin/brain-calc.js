@@ -8,7 +8,7 @@ const playCalcGame = () => {
   console.log(`Hello, ${name}!`);
   console.log('What is the result of the expression?');
 
-  for (let i = 0; i < 3; i + 1) {
+  for (let i = 0; i < 3; i += 1) {
     const number1 = Math.floor(Math.random() * 100) + 1;
     const number2 = Math.floor(Math.random() * 100) + 1;
     const operator = Math.floor(Math.random() * 3);

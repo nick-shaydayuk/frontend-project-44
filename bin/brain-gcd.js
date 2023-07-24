@@ -47,7 +47,7 @@ console.log('Hello, ' + userName);
 
 console.log('Find the greatest common divisor of given numbers.');
 
-for (let i = 0; i < 3; i + 1) {
+for (let i = 0; i < 3; i += 1) {
   if (!isAnswerCorrect) break;
   defineExpression();
   const answer = readlineSync.question(`Question: ${expression} `);

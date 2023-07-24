@@ -11,7 +11,7 @@ const generateProgression = () => {
   const progression = [];
   const hiddenIndex = Math.floor(Math.random() * length);
 
-  for (let i = 0; i < length; i + 1) {
+  for (let i = 0; i < length; i += 1) {
     if (i === hiddenIndex) {
       progression.push('..');
     } else {
