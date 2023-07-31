@@ -14,7 +14,7 @@ const getCorrectAnswer = (num1, sign, num2) => {
       return num1 * num2;
     default:
       return null;
-  };
+  }
 };
 
 const generateRound = () => {
