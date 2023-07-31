@@ -16,4 +16,4 @@ const startBrainEven = () => {
   playGame(rules, generateRound);
 };
 
-startBrainEven()
+startBrainEven();

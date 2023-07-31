@@ -13,9 +13,9 @@ const getCorrectAnswer = (num1, sign, num2) => {
     case '*':
       return num1 * num2;
     default:
-      break;
-  }
-}
+      return null;
+  };
+};
 
 const generateRound = () => {
   const mathOperator = ['+', '-', '*'];
