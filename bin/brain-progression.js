@@ -1,49 +1,33 @@
 #!/usr/bin/env node
-import readlineSync from 'readline-sync';
 
-console.log('Welcome to the Brain Games!');
+import { playGame, getRandomNumber } from './utils.js';
 
-const generateProgression = () => {
-  const length = Math.floor(Math.random() * 6) + 5;
-  const start = Math.floor(Math.random() * 100);
-  const difference = Math.floor(Math.random() * 10) + 1;
+const rules = 'What number is missing in the progression?';
 
-  const progression = [];
-  const hiddenIndex = Math.floor(Math.random() * length);
-
-  for (let i = 0; i < length; i += 1) {
-    if (i === hiddenIndex) {
-      progression.push('..');
-    } else {
-      progression.push(start + difference * i);
-    }
+const generateProgression = (randomFirstNum, minLength, step) => {
+  const resultProgression = [];
+  for (let i = randomFirstNum; i < minLength; i += step) {
+    if (resultProgression.length !== 10) resultProgression.push(i);
   }
-
-  return {
-    progression,
-    hiddenNumber: start + difference * hiddenIndex,
-  };
+  return resultProgression;
 };
 
-const playProgressionGame = () => {
-  const userName = readlineSync.question('May I have your name? ');
-  console.log(`Hello, ${userName}!`);
-  console.log('What number is missing in the progression?');
+const generateRound = () => {
+  const randomFirstNum = getRandomNumber(1, 10);
+  const step = getRandomNumber(1, 5);
+  const minLength = randomFirstNum + (step * 10);
 
-  for (let i = 0; i < 3; i += 1) {
-    const { progression, hiddenNumber } = generateProgression();
-    const userAnswer = readlineSync.question(`Question: ${progression.join(' ')} `);
+  const progression = generateProgression(randomFirstNum, minLength, step);
+  const hiddenIndex = getRandomNumber(0, progression.length - 1);
+  const correctAnswer = progression[hiddenIndex].toString();
+  progression[hiddenIndex] = '..';
+  const question = progression.join(' ');
 
-    if (Number(userAnswer) === hiddenNumber) {
-      console.log('Correct!');
-    } else {
-      console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${hiddenNumber}'.`);
-      console.log(`Let's try again, ${userName}!`);
-      return;
-    }
-  }
-
-  console.log(`Congratulations, ${userName}!`);
+  return [question, correctAnswer];
 };
 
-playProgressionGame();
+const startBrainProgression = () => {
+  playGame(rules, generateRound);
+};
+
+startBrainProgression();

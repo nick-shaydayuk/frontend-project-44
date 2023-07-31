@@ -1,51 +1,34 @@
 #!/usr/bin/env node
 
-import readlineSync from 'readline-sync';
+import { playGame, getRandomNumber } from './utils.js';
 
-const playCalcGame = () => {
-  console.log('Welcome to the Brain Games!');
-  const name = readlineSync.question('May I have your name? ');
-  console.log(`Hello, ${name}!`);
-  console.log('What is the result of the expression?');
+const rules = 'What is the result of the expression?';
 
-  for (let i = 0; i < 3; i += 1) {
-    const number1 = Math.floor(Math.random() * 100) + 1;
-    const number2 = Math.floor(Math.random() * 100) + 1;
-    const operator = Math.floor(Math.random() * 3);
-
-    let expression;
-    let correctAnswer;
-
-    switch (operator) {
-      case 0:
-        expression = `${number1} + ${number2}`;
-        correctAnswer = number1 + number2;
-        break;
-      case 1:
-        expression = `${number1} - ${number2}`;
-        correctAnswer = number1 - number2;
-        break;
-      case 2:
-        expression = `${number1} * ${number2}`;
-        correctAnswer = number1 * number2;
-        break;
-      default:
-        break;
-    }
-
-    const userAnswer = readlineSync.question(`Question: ${expression} `);
-    console.log(`Your answer: ${userAnswer}`);
-
-    if (Number(userAnswer) === correctAnswer) {
-      console.log('Correct!');
-    } else {
-      console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.`);
-      console.log(`Let's try again, ${name}!`);
-      return;
-    }
+const getCorrectAnswer = (num1, sign, num2) => {
+  switch (sign) {
+    case '+':
+      return num1 + num2;
+    case '-':
+      return num1 - num2;
+    case '*':
+      return num1 * num2;
+    default:
+      break;
   }
+}
 
-  console.log(`Congratulations, ${name}!`);
+const generateRound = () => {
+  const mathOperator = ['+', '-', '*'];
+  const getMathOperator = mathOperator[getRandomNumber(0, mathOperator.length - 1)];
+  const number1 = getRandomNumber(1, 50);
+  const number2 = getRandomNumber(1, 50);
+  const question = `${number1} ${getMathOperator} ${number2}`;
+  const correctAnswer = getCorrectAnswer(number1, getMathOperator, number2).toString();
+  return [question, correctAnswer];
 };
 
-playCalcGame();
+const startBrainCalc = () => {
+  playGame(rules, generateRound);
+};
+
+startBrainCalc();

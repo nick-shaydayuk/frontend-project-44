@@ -1,58 +1,25 @@
 #!/usr/bin/env node
-import readlineSync from 'readline-sync';
 
-console.log('Welcome to the Brain Games!');
+import { playGame, getRandomNumber } from './utils.js';
 
-let number1;
-let number2;
-let expression;
-let greatestCommonDivisor;
-let isAnswerCorrect = true;
+const rules = 'Find the greatest common divisor of given numbers.';
 
-const checkAnswer = (answer, userName) => {
-  if (parseInt(answer, 10) === greatestCommonDivisor) {
-    console.log('Correct!');
-  } else {
-    console.log(`'${answer}' is wrong answer ;(. Correct answer was '${greatestCommonDivisor}'`);
-    console.log(`Let's try again, ${userName}!`);
-    isAnswerCorrect = false;
-  }
+const calculateGCD = (num1, num2) => {
+  if (num2 > num1) return calculateGCD(num2, num1);
+  if (!num2) return num1;
+  return calculateGCD(num2, num1 % num2);
 };
 
-const findGreatestCommonDivisor = (num1, num2) => {
-  let divisor = 1;
-  const smallerNum = Math.min(num1, num2);
-
-  for (let i = 1; i <= smallerNum; i += 1) {
-    if (num1 % i === 0 && num2 % i === 0) {
-      divisor = i;
-    }
-  }
-
-  return divisor;
+const generateRound = () => {
+  const generateNumber1 = getRandomNumber(1, 50);
+  const generateNumber2 = getRandomNumber(1, 50);
+  const question = `${generateNumber1} ${generateNumber2}`;
+  const correctAnswer = calculateGCD(generateNumber1, generateNumber2).toString();
+  return [question, correctAnswer];
 };
 
-const defineExpression = () => {
-  number1 = Math.floor(Math.random() * 100);
-  number2 = Math.floor(Math.random() * 100);
-  expression = `${number1} ${number2}`;
-  greatestCommonDivisor = findGreatestCommonDivisor(number1, number2);
+const startBrainGCD = () => {
+  playGame(rules, generateRound);
 };
 
-const userName = readlineSync.question('May I have your name? ');
-
-console.log(`Hello, ${userName}`);
-
-console.log('Find the greatest common divisor of given numbers.');
-
-for (let i = 0; i < 3; i += 1) {
-  if (!isAnswerCorrect) break;
-  defineExpression();
-  const answer = readlineSync.question(`Question: ${expression} `);
-  console.log(`Your answer: ${answer}`);
-  checkAnswer(answer, userName);
-}
-
-if (isAnswerCorrect) {
-  console.log(`Congratulations, ${userName}!`);
-}
+startBrainGCD();
